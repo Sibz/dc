@@ -26,6 +26,7 @@ if cd ${folder} ; then
     echo "Removing old binary"
     rm -f /output/${repo}
     mv target/release/${repo} /output/${repo}
+    chmod +x /output/${repo}
 else
     echo "Failed to cd into ${folder}"
 fi

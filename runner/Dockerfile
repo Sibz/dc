@@ -12,6 +12,4 @@ RUN apt-get update && apt-get install -y \
 
 #ENTRYPOINT [ "/bin/bash", "-l", "-c" ]
 
-RUN chmod +x /app/magnitudo_machina
-
 CMD [ "./magnitudo_machina" ]
