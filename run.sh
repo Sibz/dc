@@ -1,12 +1,12 @@
 folder="repo"
 
 repo="magnitudo_machina"
-url="https://github.com/#{GIT_ORG}/${GIT_REPO}"
+url="https://github.com/${GIT_ORG}/${GIT_REPO}"
 branch="mm-dev"
 
 git config \
     --global \
-    url."https://rustanigans:${GIT_PAT}@github.com/".insteadOf \
+    url."https://${GIT_ORG}:${GIT_PAT}@github.com/".insteadOf \
     "https://github.com/"
 
 if [ -d "${folder}" ] ; then
