@@ -1,1 +1,0 @@
-/app/magnitudo_machina
