@@ -2,6 +2,8 @@ services:
    
   compile_mm:
     build: .
+    env_file:
+      - .env
     volumes:
       - data:/output
       - workspace:/workspace
