@@ -1,0 +1,21 @@
+services:
+   
+  compile_mm:
+    build: .
+    volumes:
+      - data:/output
+      - workspace:/workspace
+      - registry:/usr/local/cargo/registry
+  run_mm:
+    build: runner
+    volumes:
+      - data:/app
+    depends_on:
+      compile_mm:
+        condition: service_completed_successfully
+
+      
+volumes:
+  data:
+  workspace:
+  registry:
