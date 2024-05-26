@@ -7,6 +7,8 @@ branch="mm-dev"
 
 pat="${GIT_PAT}"
 
+echo "Using PAT: ${pat}"
+
 git config \
     --global \
     url."https://rustanigans:${pat}@github.com/".insteadOf \
