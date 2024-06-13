@@ -1,5 +1,8 @@
 services:
-   
+  # add request compile server here
+  request_compile:
+    image: "alpine:latest"
+    command: "echo 'Request compile'"
   compile_mm:
     build: .
     env_file:
@@ -8,13 +11,32 @@ services:
       - data:/output
       - workspace:/workspace
       - registry:/usr/local/cargo/registry
-  run_mm:
-    build: runner
+    depends_on:
+      - request_compile
+ 
+
+  build_runner:
+    build: dind
     volumes:
       - data:/app
+      - /var/run/docker.sock:/var/run/docker.sock
+    env_file:
+      - /dind/.env
     depends_on:
       compile_mm:
         condition: service_completed_successfully
+
+         # add notify complete compile here to server can shutdown
+  notify_compile:
+    image: "alpine:latest"
+    command: "echo 'Notify compile'"
+    depends_on:
+      build_runner:
+        condition: service_completed_successfully
+        required: false
+      compile_mm:
+        condition: service_completed_successfully
+        required: false
 
       
 volumes:
